@@ -3,7 +3,7 @@ LIBPATH=$(HOME)/codes/CG
 all: main
 
 mgmres.o: mgmres.cpp mgmres.hpp
-	g++ -c -I/$(LIBPATH) cg_lib.cpp
+	g++ -c -I/$(LIBPATH) mgmres.cpp
 	#mpic++ -c -I/$(LIBPATH) cg_lib.cpp
 	#mv cg_lib.o $(LIBPATH)/cg_lib.o
 
