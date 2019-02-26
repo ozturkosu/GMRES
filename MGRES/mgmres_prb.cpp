@@ -52,7 +52,7 @@ int main (int argc, char** argv )
   cout << "  C++ version\n";
   
 
-  test01_ErrorInjected (int psize, int fPos, int range1, int range2, int k );
+  test01_ErrorInjected ( psize, fPos, range1,  range2,  k );
 
 
 
