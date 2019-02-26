@@ -54,7 +54,7 @@ int main (int argc, char** argv )
   cout << "  C++ version\n";
   
 
-
+  test01_ErrorInjected (int psize, double threshold, int fPos, int range1, int range2, int k );
 
 
 
@@ -834,7 +834,7 @@ void test01_ErrorInjected (int psize, double threshold, int fPos, int range1, in
     cout << "  Initial X_ERROR = " << x_error << "\n";
 
     mgmres_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
-      tol_abs, tol_rel );
+      tol_abs, tol_rel , psize , threshold, fPos , range1, range2 , k);
 
     x_error = 0.0;
     for ( i = 0; i < n; i++ )

@@ -838,6 +838,13 @@ void mgmres_st ( int n, int nz_num, int ia[], int ja[], double a[], double x[],
 
   for ( itr = 1; itr <= itr_max; itr++ )
   {
+
+
+
+
+
+
+
     ax_st ( n, nz_num, ia, ja, a, x, r );
 
     for ( i = 0; i < n; i++ )
@@ -1142,6 +1149,15 @@ void mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double
 
   for ( itr = 1; itr <= itr_max; itr++ )
   {
+
+    if( itr == fPos)
+    {
+          cout << " Fault Injecting is occurred here" <<endl ;
+          injectBitFlipNotRandom(n , r, s , x , range1 ,  range2 ,  k) ;
+
+    }
+
+
     ax_st ( n, nz_num, ia, ja, a, x, r );
 
     for ( i = 0; i < n; i++ )
