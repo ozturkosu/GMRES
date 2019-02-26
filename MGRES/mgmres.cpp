@@ -1015,7 +1015,7 @@ void mgmres_st ( int n, int nz_num, int ia[], int ja[], double a[], double x[],
 
 void mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double x[],
   double rhs[], int itr_max, int mr, double tol_abs, double tol_rel , int psize,
-  double treshold, int fPos, int range1 , int range2, int k )
+  double treshold, int fPos, int range1 , int range2, int kf )
 
 //****************************************************************************80
 //
@@ -1116,7 +1116,7 @@ void mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double
     if( itr == fPos)
     {
           cout << " Fault Injecting is occurred here" <<endl ;
-          injectBitFlipNotRandom(n , r, s , x , range1 ,  range2 ,  k) ;
+          injectBitFlipNotRandom(n , r, s , x , range1 ,  range2 ,  kf) ;
 
     }
 
