@@ -8,23 +8,17 @@ using namespace std;
 
 # include "mgmres.hpp"
 
-int main ( );
+int main (int argc, char** argv );
 void test01 ( );
 void test02 ( );
 void test03 ( );
 void test04 ( );
-void test01_ErrorInjected (int psize, double threshold, int fPos, int range1, int range2, int k );
+void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int k );
 
 //****************************************************************************80
 
 int main (int argc, char** argv )
 {
-  timestamp ( );
-  cout << "\n";
-  cout << "MGMRES_PRB:\n";
-  cout << "  C++ version\n";
-  cout << "  Test the MGMRES library.\n";
-
 
    if (argc != 6) 
    {
@@ -41,7 +35,11 @@ int main (int argc, char** argv )
   int k=atoi(argv[5]) ;  // K for injecting type
  
 
-
+  timestamp ( );
+  cout << "\n";
+  cout << "MGMRES_PRB:\n";
+  cout << "  C++ version\n";
+  cout << "  Test the MGMRES library.\n";
 
 
   test01 ( );
@@ -54,7 +52,7 @@ int main (int argc, char** argv )
   cout << "  C++ version\n";
   
 
-  test01_ErrorInjected (int psize, double threshold, int fPos, int range1, int range2, int k );
+  test01_ErrorInjected (int psize, int fPos, int range1, int range2, int k );
 
 
 
@@ -692,7 +690,7 @@ void test04 ( )
 # undef NZ_NUM
 }
 
-void test01_ErrorInjected (int psize, double threshold, int fPos, int range1, int range2, int k )
+void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int k )
 
 //****************************************************************************80
 //
@@ -833,7 +831,7 @@ void test01_ErrorInjected (int psize, double threshold, int fPos, int range1, in
     cout << "  Outer iteration limit = " << itr_max << "\n";
     cout << "  Initial X_ERROR = " << x_error << "\n";
 
-    mgmres_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
+    mgmres_fault_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
       tol_abs, tol_rel , psize , threshold, fPos , range1, range2 , k);
 
     x_error = 0.0;
