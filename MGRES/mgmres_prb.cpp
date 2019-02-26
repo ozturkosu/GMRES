@@ -13,33 +13,11 @@ void test01 ( );
 void test02 ( );
 void test03 ( );
 void test04 ( );
+void test01_ErrorInjected (int psize, double threshold, int fPos, int range1, int range2, int k );
 
 //****************************************************************************80
 
-int main ( )
-
-//****************************************************************************80
-//
-//  Purpose:
-//
-//    MAIN is the main program for MGMRES_PRB.
-//
-//  Discussion:
-//
-//    MGMRES_PRB tests the MGMRES library.
-//
-//  Licensing:
-//
-//    This code is distributed under the GNU LGPL license. 
-//
-//  Modified:
-//
-//    25 July 2007
-//
-//  Author:
-//
-//    John Burkardt
-//
+int main (int argc, char** argv )
 {
   timestamp ( );
   cout << "\n";
@@ -47,10 +25,40 @@ int main ( )
   cout << "  C++ version\n";
   cout << "  Test the MGMRES library.\n";
 
+
+   if (argc != 6) 
+   {
+      cout << "usage: ./main  [problemSize] [flipPosition] [range1] [range2] [Bit Injecting Type]" << endl;
+      return 0;
+   }
+
+
+
+  int psize = atoi(argv[1]);  // problem size
+  int fPos = atoi(argv[2]);   // iteration to flip bits
+  int range1=atoi(argv[3]);   //   Bit flip range start
+  int range2=atoi(argv[4]) ;  // Bit flip range finish
+  int k=atoi(argv[5]) ;  // K for injecting type
+ 
+
+
+
+
   test01 ( );
   test02 ( );
   test03 ( );
   test04 ( );
+
+  cout << "\n";
+  cout << "Fault Tolerance Test\n";
+  cout << "  C++ version\n";
+  
+
+
+
+
+
+
 //
 //  Terminate.
 //
@@ -683,3 +691,168 @@ void test04 ( )
 # undef N
 # undef NZ_NUM
 }
+
+void test01_ErrorInjected (int psize, double threshold, int fPos, int range1, int range2, int k )
+
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    TEST01 tests MGMRES_ST on the simple -1,2-1 matrix.
+//
+//  Discussion:
+//
+//    This is a very weak test, since the matrix has such a simple
+//    structure, is diagonally dominant (though not strictly), 
+//    and is symmetric.
+//
+//    To make the matrix bigger, simply increase the value of N.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license. 
+//
+//  Modified:
+//
+//    13 July 2007
+//
+//  Author:
+//
+//    John Burkardt
+//
+{
+# define N 20
+# define NZ_NUM 3 * N - 2
+
+  double a[NZ_NUM];
+  int i;
+  int ia[NZ_NUM];
+  int itr_max;
+  int j;
+  int ja[NZ_NUM];
+  int k;
+  int mr;
+  int n = N;
+  int nz_num = NZ_NUM;
+  double rhs[N];
+  int test;
+  double tol_abs;
+  double tol_rel;
+  double x_error;
+  double x_estimate[N];
+  double x_exact[N];
+
+  cout << "\n";
+  cout << "TEST01\n";
+  cout << "  Test MGMRES_ST on the simple -1,2-1 matrix.\n";
+//
+//  Set the matrix.
+//  Note that we use zero based index values in IA and JA.
+//
+  k = 0;
+
+  for ( i = 0; i < n; i++ )
+  {
+    if ( 0 < i )
+    {
+      ia[k] = i;
+      ja[k] = i-1;
+      a[k] = -1.0;
+      k = k + 1;
+    }
+
+    ia[k] = i;
+    ja[k] = i;
+    a[k] = 2.0;
+    k = k + 1;
+
+    if ( i < n-1 )
+    {
+      ia[k] = i;
+      ja[k] = i+1;
+      a[k] = -1.0;
+      k = k + 1;
+    }
+
+  }
+//
+//  Set the right hand side:
+//
+  for ( i = 0; i < n-1; i++ )
+  {
+    rhs[i] = 0.0;
+  }
+  rhs[N-1] = ( double ) ( n + 1 );
+//
+//  Set the exact solution.
+//
+  for ( i = 0; i < n; i++ )
+  {
+    x_exact[i] = ( double ) ( i + 1 );
+  }
+
+  for ( test = 1; test <= 3; test++ )
+  {
+//
+//  Set the initial solution estimate.
+//
+    for ( i = 0; i < n; i++ )
+    {
+      x_estimate[i] = 0.0;
+    }
+
+    x_error = 0.0;
+    for ( i = 0; i < n; i++ )
+    {
+      x_error = x_error + pow ( x_exact[i] - x_estimate[i], 2 );
+    }
+    x_error = sqrt ( x_error );
+
+    if ( test == 1 )
+    {
+      itr_max = 1;
+      mr = 20;
+    }
+    else if ( test == 2 )
+    {
+      itr_max = 2;
+      mr = 10;
+    }
+    else if ( test == 3 )
+    {
+      itr_max = 5;
+      mr = 4;
+    }
+    tol_abs = 1.0E-08;
+    tol_rel = 1.0E-08;
+
+    cout << "\n";
+    cout << "  Test " << test << "\n";
+    cout << "  Matrix order N = " << n << "\n";
+    cout << "  Inner iteration limit = " << mr << "\n";
+    cout << "  Outer iteration limit = " << itr_max << "\n";
+    cout << "  Initial X_ERROR = " << x_error << "\n";
+
+    mgmres_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
+      tol_abs, tol_rel );
+
+    x_error = 0.0;
+    for ( i = 0; i < n; i++ )
+    {
+      x_error = x_error + pow ( x_exact[i] - x_estimate[i], 2 );
+    }
+    x_error = sqrt ( x_error );
+
+    cout << "  Final X_ERROR = " << x_error << "\n";
+  }
+  return;
+# undef N
+# undef NZ_NUM
+}
+
+
+
+
+
+
+
