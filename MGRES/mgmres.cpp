@@ -1979,3 +1979,49 @@ void timestamp ( )
   return;
 # undef TIME_SIZE
 }
+
+void injectBitFlipNotRandom( int n , double a[] , double x[] , double b[] ,  int range1 , int range2 , int k)
+{
+    //Written By Emin
+
+  double ** badpointer = new double* [3] ;
+
+  badpointer[0] = r ;
+  badpointer[1] = p ;
+  badpointer[2] = x ;
+
+  srand (time(NULL)) ;
+
+  int dim1 = k ;
+
+  // Emin Question = n  
+  
+
+  int dim2 = rand() % n ;
+
+  if(k == 0)
+    cout << " flipping in r "<<dim2<< endl ;
+  else if (k==1)
+  {
+    /* code */
+    cout<< " flipping in p "<<dim2<<endl ;
+  }
+  else if (k==2)
+  {
+    /* code */
+    cout<< " flipping in x"<<dim2<<endl ;
+  }
+
+  BitFlip::randomFlip(&badpointer[dim1][dim2],  range1 ,  range2) ;
+
+  delete [] badpointer;
+
+
+
+}
+
+
+
+
+
+
