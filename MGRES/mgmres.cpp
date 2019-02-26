@@ -1980,7 +1980,7 @@ void timestamp ( )
 # undef TIME_SIZE
 }
 
-void injectBitFlipNotRandom( int n , double a[] , double x[] , double b[] ,  int range1 , int range2 , int k)
+void injectBitFlipNotRandom( int n , double r[] , double p[] , double x[] ,  int range1 , int range2 , int k)
 {
     //Written By Emin
 
