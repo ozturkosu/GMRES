@@ -1041,43 +1041,6 @@ void mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double
 //    This requires that references to H[I][J] be replaced by references
 //    to H[I+J*(MR+1)] and references to V[I][J] by V[I+J*N].
 //
-//  Licensing:
-//
-//    This code is distributed under the GNU LGPL license. 
-//
-//  Modified:
-//
-//    18 July 2007
-//
-//  Author:
-//
-//    Original C version by Lili Ju.
-//    C++ version by John Burkardt.
-//
-//  Reference:
-//
-//    Richard Barrett, Michael Berry, Tony Chan, James Demmel,
-//    June Donato, Jack Dongarra, Victor Eijkhout, Roidan Pozo,
-//    Charles Romine, Henk van der Vorst,
-//    Templates for the Solution of Linear Systems:
-//    Building Blocks for Iterative Methods,
-//    SIAM, 1994,
-//    ISBN: 0898714710,
-//    LC: QA297.8.T45.
-//
-//    Tim Kelley,
-//    Iterative Methods for Linear and Nonlinear Equations,
-//    SIAM, 2004,
-//    ISBN: 0898713528,
-//    LC: QA297.8.K45.
-//
-//    Yousef Saad,
-//    Iterative Methods for Sparse Linear Systems,
-//    Second Edition,
-//    SIAM, 2003,
-//    ISBN: 0898715342,
-//    LC: QA188.S17.
-//
 //  Parameters:
 //
 //    Input, int N, the order of the linear system.
@@ -1157,13 +1120,16 @@ void mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double
 
     }
 
-
+    //This function is calculating A*x
     ax_st ( n, nz_num, ia, ja, a, x, r );
 
+    //This for loop is calculating r = b - A* x   ( Residual )
     for ( i = 0; i < n; i++ )
     {
       r[i] = rhs[i] - r[i];
     }
+
+    //This is estimating || r ||2 
 
     rho = sqrt ( r8vec_dot ( n, r, r ) );
 
@@ -1177,6 +1143,8 @@ void mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double
       rho_tol = rho * tol_rel;
     }
 
+
+    // Q(: , 1) = r / r_norm
     for ( i = 0; i < n; i++)
     {
       v[i+0*n] = r[i] / rho;
@@ -1196,22 +1164,34 @@ void mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double
       }
     }
 
+
+    //In this for loop Arnoldi Function and apply_given_rotaion is done ( Look Wikipedia)
+
     for ( k = 1; k <= mr; k++ )
     {
       k_copy = k;
 
+      // q = A * Q(: ,1)  
       ax_st ( n, nz_num, ia, ja, a, v+(k-1)*n, v+k*n );
 
       av = sqrt ( r8vec_dot ( n, v+k*n, v+k*n ) );
 
       for ( j = 1; j <= k; j++ )
       {
+
+        // h(i) = q' * Q(: , i)
+
         h[(j-1)+(k-1)*(mr+1)] = r8vec_dot ( n, v+k*n, v+(j-1)*n );
+
+        // q = q - h(i) * Q( : , i) 
+
         for ( i = 0; i < n; i++ ) 
         {
           v[i+k*n] = v[i+k*n] - h[(j-1)+(k-1)*(mr+1)] * v[i+(j-1)*n];
         }
       }
+
+      //h(k+1) = norm(q)
 
       h[k+(k-1)*(mr+1)] = sqrt ( r8vec_dot ( n, v+k*n, v+k*n ) );
 
@@ -1233,9 +1213,13 @@ void mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double
       {
         for ( i = 0; i < n; i++ ) 
         {
+          // q = q / h(k+1)
+
           v[i+k*n] = v[i+k*n] / h[k+(k-1)*(mr+1)];
         }
       }
+
+      // This part is apply given rotation Look at mult_givens
 
       if ( 1 < k )
       {
@@ -1277,6 +1261,10 @@ void mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double
     }
 
     k = k_copy - 1;
+
+    // Calculate the result
+    //  y = H(1:k, 1:k) \ beta(1:k)
+
     y[k] = g[k] / h[k+k*(mr+1)];
 
     for ( i = k; 1 <= i; i-- )
@@ -1288,6 +1276,11 @@ void mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double
       }
       y[i-1] = y[i-1] / h[(i-1)+(i-1)*(mr+1)];
     }
+
+
+    //Calculate the result
+    // x = x + Q(: , 1:k ) * y ;
+
 
     for ( i = 1; i <= n; i++ )
     {
