@@ -20,6 +20,8 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int k )
 int main (int argc, char** argv )
 {
 
+   srand(time(NULL)) ;
+
    if (argc != 6) 
    {
       cout << "usage: ./main  [problemSize] [flipPosition] [range1] [range2] [Bit Injecting Type]" << endl;
