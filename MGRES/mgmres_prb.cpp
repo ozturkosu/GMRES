@@ -42,10 +42,10 @@ int main (int argc, char** argv )
   cout << "  Test the MGMRES library.\n";
 
 
-  test01 ( );
-  test02 ( );
-  test03 ( );
-  test04 ( );
+  //test01 ( );
+  //test02 ( );
+  //test03 ( );
+  //test04 ( );
 
   cout << "\n";
   cout << "Fault Tolerance Test\n";
