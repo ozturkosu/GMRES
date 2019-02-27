@@ -795,7 +795,7 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
 //  Set the initial solution estimate.
 //
     srand(time(NULL)) ;
-    
+
     for ( i = 0; i < n; i++ )
     {
       x_estimate[i] = 0.0;
@@ -810,7 +810,7 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
 
 
     itr_max = 100;
-    mr = 100;
+    mr = 50;
 
     /*
 
