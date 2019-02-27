@@ -1985,7 +1985,7 @@ void timestamp ( )
 # undef TIME_SIZE
 }
 
-void injectBitFlipNotRandom( int n , double r[] , double p[] , double x[] ,  int range1 , int range2 , int k)
+void injectBitFlipNotRandom( int n , double r[] , double p[] , double x[] ,  int range1 , int range2 , int kf)
 {
     //Written By Emin
 
@@ -1995,23 +1995,23 @@ void injectBitFlipNotRandom( int n , double r[] , double p[] , double x[] ,  int
   badpointer[1] = p ;
   badpointer[2] = x ;
 
-  srand (time(NULL)) ;
+  //srand (time(NULL)) ;
 
-  int dim1 = k ;
+  int dim1 = kf ;
 
   // Emin Question = n  
   
   srand( time(NULL)) ;
   int dim2 = rand() % n ;
 
-  if(k == 0)
+  if(kf == 0)
     cout << " flipping in r "<<dim2<< endl ;
-  else if (k==1)
+  else if (kf==1)
   {
     /* code */
     cout<< " flipping in p "<<dim2<<endl ;
   }
-  else if (k==2)
+  else if (kf==2)
   {
     /* code */
     cout<< " flipping in x"<<dim2<<endl ;
