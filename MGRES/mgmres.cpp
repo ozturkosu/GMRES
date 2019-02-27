@@ -1172,7 +1172,7 @@ void mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double
        if( k == fPos)
        {
           cout << " Fault Injecting is occurred here" <<endl ;
-          injectBitFlipNotRandom(n , r, s , x , range1 ,  range2 ,  kf) ;
+          injectBitFlipNotRandom(n , r, s , v, h, y,  x , range1 ,  range2 ,  kf) ;
 
        }
 
@@ -1985,15 +1985,19 @@ void timestamp ( )
 # undef TIME_SIZE
 }
 
-void injectBitFlipNotRandom( int n , double r[] , double p[] , double x[] ,  int range1 , int range2 , int kf)
+void injectBitFlipNotRandom( int n , double r[] , double s[] , double v[] , double h[] , double y[] , double x[] ,  int range1 , int range2 , int kf)
 {
     //Written By Emin
 
-  double ** badpointer = new double* [3] ;
+  double ** badpointer = new double* [6] ;
 
   badpointer[0] = r ;
-  badpointer[1] = p ;
-  badpointer[2] = x ;
+  badpointer[1] = s ;
+  badpointer[2] = v ;
+  badpointer[3] = h ;
+  badpointer[4] = y ;
+  badpointer[5] = x ;
+
 
   //srand (time(NULL)) ;
 
@@ -2009,13 +2013,35 @@ void injectBitFlipNotRandom( int n , double r[] , double p[] , double x[] ,  int
   else if (kf==1)
   {
     /* code */
-    cout<< " flipping in p "<<dim2<<endl ;
+    cout<< " flipping in s "<<dim2<<endl ;
   }
   else if (kf==2)
   {
     /* code */
-    cout<< " flipping in x"<<dim2<<endl ;
+    cout<< " flipping in v"<<dim2<<endl ;
   }
+  else if (kf==3)
+  {
+    /* code */
+    cout<< " flipping in h"<<dim2<<endl ;
+
+  }
+  else if (kf==4)
+  {
+    /* code */
+    cout<< " flipping in y"<<dim2<<endl ;
+
+  }
+  else if (kf==5)
+  {
+    /* code */
+    cout<< " flipping in x"<<dim2<<endl ;
+
+  }
+
+
+
+
 
   BitFlip::randomFlip(&badpointer[dim1][dim2],  range1 ,  range2) ;
 
