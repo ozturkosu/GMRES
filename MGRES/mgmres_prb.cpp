@@ -787,7 +787,7 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
     x_exact[i] = ( double ) ( i + 1 );
   }
 
-  for ( test = 1; test <= 1; test++ )
+  for ( test = 1; test <= 10; test++ )
   {
 //
 //  Set the initial solution estimate.
@@ -804,21 +804,29 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
     }
     x_error = sqrt ( x_error );
 
-    if ( test == 1 )
-    {
-      itr_max = 100;
-      mr = 100;
-    }
-    else if ( test == 2 )
-    {
-      itr_max = 2;
-      mr = 50;
-    }
-    else if ( test == 3 )
-    {
-      itr_max = 5;
-      mr = 25;
-    }
+
+    itr_max = 100;
+    mr = 100;
+
+    /*
+
+      if ( test == 1 )
+      {
+        itr_max = 100;
+        mr = 100;
+      }
+      else if ( test == 2 )
+      {
+        itr_max = 2;
+        mr = 50;
+      }
+      else if ( test == 3 )
+      {
+        itr_max = 5;
+        mr = 25;
+      }
+    */
+
     tol_abs = 1.0E-08;
     tol_rel = 1.0E-08;
 
