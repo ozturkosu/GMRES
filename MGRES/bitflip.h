@@ -194,9 +194,13 @@ class BitFlip {
   static inline void randomFlip(double *dp , int range1 , int range2)
   {
     //int i = getRand()%(sizeof(double)*8);
+    cout << " Random Flip Operation Range 1 = " <<range1<<" and Range 2 =" << range2 <<endl ;
+
     srand(time(NULL));
     int i= ( getRand()%(range2 + 1 - range1) )+ range1 ;    
     char * cp=(char*)dp;
+
+    cout << " Bit flip operaton is done and injected bit is = " <<i<<endl ;
 
       for (int j=7;j>0;j--)                                                      
       {
@@ -210,7 +214,7 @@ class BitFlip {
 
     PflipBit(cp, i) ;
 
-    cout << " Bit flip operaton is done and injected bit is = " <<i<<endl ;
+    
 
   //Emin 
 
