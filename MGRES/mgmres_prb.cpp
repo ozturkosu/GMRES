@@ -789,7 +789,7 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
     x_exact[i] = ( double ) ( i + 1 );
   }
 
-  for ( test = 1; test <= 10; test++ )
+  for ( test = 1; test <= 1; test++ )
   {
 //
 //  Set the initial solution estimate.
