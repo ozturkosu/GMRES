@@ -719,7 +719,7 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
 //    John Burkardt
 //
 {
-# define N 20
+# define N 100
 # define NZ_NUM 3 * N - 2
 
   double a[NZ_NUM];
@@ -832,7 +832,7 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
     cout << "  Initial X_ERROR = " << x_error << "\n";
 
     mgmres_fault_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
-      tol_abs, tol_rel , psize , threshold, fPos , range1, range2 , kf);
+      tol_abs, tol_rel , psize ,  fPos , range1, range2 , kf);
 
     x_error = 0.0;
     for ( i = 0; i < n; i++ )
