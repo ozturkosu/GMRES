@@ -4,6 +4,9 @@
 # include <fstream>
 # include <iomanip>
 # include <iostream>
+# include <stdlib.h>
+# include <stdio.h>
+# include <time.h>
 
 using namespace std;
 
@@ -1998,7 +2001,7 @@ void injectBitFlipNotRandom( int n , double r[] , double p[] , double x[] ,  int
 
   // Emin Question = n  
   
-
+  srand( time(NULL)) ;
   int dim2 = rand() % n ;
 
   if(k == 0)
