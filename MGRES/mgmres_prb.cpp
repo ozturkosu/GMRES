@@ -55,18 +55,16 @@ int main (int argc, char** argv )
   test01_ErrorInjected ( psize, fPos, range1,  range2,  k );
 
 
+  //
+  //  Terminate.
+  //
+    cout << "\n";
+    cout << "MGMRES_PRB:\n";
+    cout << "  Normal end of execution.\n";
+    cout << "\n";
+    timestamp ( );
 
-
-//
-//  Terminate.
-//
-  cout << "\n";
-  cout << "MGMRES_PRB:\n";
-  cout << "  Normal end of execution.\n";
-  cout << "\n";
-  timestamp ( );
-
-  return 0;
+    return 0;
 }
 //****************************************************************************80
 
@@ -809,17 +807,17 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
     if ( test == 1 )
     {
       itr_max = 1;
-      mr = 20;
+      mr = 100;
     }
     else if ( test == 2 )
     {
       itr_max = 2;
-      mr = 10;
+      mr = 50;
     }
     else if ( test == 3 )
     {
       itr_max = 5;
-      mr = 4;
+      mr = 25;
     }
     tol_abs = 1.0E-08;
     tol_rel = 1.0E-08;
