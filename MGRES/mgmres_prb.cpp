@@ -14,6 +14,8 @@ void test02 ( );
 void test03 ( );
 void test04 ( );
 void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int k );
+void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf ) ;
+
 
 //****************************************************************************80
 
@@ -859,6 +861,197 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
 }
 
 
+
+void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf )
+{
+
+# define N 100
+# define NZ_NUM 3 * N - 2
+
+  //double a[NZ_NUM];
+  double *a ; // Val matrix for sparse format
+  int a;
+
+  //int ia[NZ_NUM];
+  int *ia;
+
+  int itr_max;
+  int j;
+
+  //int ja[NZ_NUM];
+  int *ja;
+
+  int k;
+  int mr;
+  int n = N;
+
+  int nz_num = NZ_NUM;
+
+  double rhs[N];
+  int test;
+  double tol_abs;
+  double tol_rel;
+  double x_error;
+  double x_estimate[N];
+  double x_exact[N];
+
+  cout << "\n";
+  cout << "TEST01\n";
+
+  //cout << "  Test MGMRES_ST on the simple -1,2-1 matrix.\n";
+//
+//  Set the matrix.
+//  Note that we use zero based index values in IA and JA.
+//
+  k = 0;
+
+  /*
+  for ( i = 0; i < n; i++ )
+  {
+    if ( 0 < i )
+    {
+      ia[k] = i;
+      ja[k] = i-1;
+      a[k] = -1.0;
+      k = k + 1;
+    }
+
+    ia[k] = i;
+    ja[k] = i;
+    a[k] = 2.0;
+    k = k + 1;
+
+    if ( i < n-1 )
+    {
+      ia[k] = i;
+      ja[k] = i+1;
+      a[k] = -1.0;
+      k = k + 1;
+    }
+
+  }
+  */
+
+
+
+   //ifstream matrixfile("1138_bus.mtx");
+  ifstream matrixfile("bcsstk06.mtx");
+  if(!(matrixfile.is_open())){
+      cout << "Error : file not found " <<endl;
+      return;
+  }
+  int m,ni,l;
+  while(matrixfile.peek()=='%') matrixfile.ignore(2048, '\n');
+  matrixfile>>m>>ni>>l ;
+
+
+  cout << " m = "<<m<<endl ;
+  cout << " n = "<<ni<<endl ;
+  cout << " l = "<<l<<endl ;
+
+  ia = new double[l] ;
+  ja = new double[l] ;
+  a = new double[l] ;
+
+  for (int i = 0; i < l; ++i)
+  {
+    /* code */
+    matrixfile >> ia[i] >> ja[i] >> a[i] ;
+
+  }
+
+  matrixfile.close() ;
+
+
+  cout << " Matrix A is filled from file"<<endl ;
+
+
+
+
+//
+//  Set the right hand side:
+//
+  for ( i = 0; i < n-1; i++ )
+  {
+    rhs[i] = 0.0;
+  }
+  rhs[N-1] = ( double ) ( n + 1 );
+//
+//  Set the exact solution.
+//
+  for ( i = 0; i < n; i++ )
+  {
+    x_exact[i] = ( double ) ( i + 1 );
+  }
+
+  for ( test = 1; test <= 1; test++ )
+  {
+//
+//  Set the initial solution estimate.
+//
+    srand(time(NULL)) ;
+
+    for ( i = 0; i < n; i++ )
+    {
+      x_estimate[i] = 0.0;
+    }
+
+    x_error = 0.0;
+    for ( i = 0; i < n; i++ )
+    {
+      x_error = x_error + pow ( x_exact[i] - x_estimate[i], 2 );
+    }
+    x_error = sqrt ( x_error );
+
+
+    itr_max = 100;
+    mr = 50;
+
+    /*
+
+      if ( test == 1 )
+      {
+        itr_max = 100;
+        mr = 100;
+      }
+      else if ( test == 2 )
+      {
+        itr_max = 2;
+        mr = 50;
+      }
+      else if ( test == 3 )
+      {
+        itr_max = 5;
+        mr = 25;
+      }
+    */
+
+    tol_abs = 1.0E-08;
+    tol_rel = 1.0E-08;
+
+    cout << "\n";
+    cout << "  Test " << test << "\n";
+    cout << "  Matrix order N = " << n << "\n";
+    cout << "  Inner iteration limit = " << mr << "\n";
+    cout << "  Outer iteration limit = " << itr_max << "\n";
+    cout << "  Initial X_ERROR = " << x_error << "\n";
+
+    mgmres_fault_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
+      tol_abs, tol_rel , psize ,  fPos , range1, range2 , kf);
+
+    x_error = 0.0;
+    for ( i = 0; i < n; i++ )
+    {
+      x_error = x_error + pow ( x_exact[i] - x_estimate[i], 2 );
+    }
+    x_error = sqrt ( x_error );
+
+    cout << "  Final X_ERROR = " << x_error << "\n";
+  }
+  return;
+# undef N
+# undef NZ_NUM
+}
 
 
 
