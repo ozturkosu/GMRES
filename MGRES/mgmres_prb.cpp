@@ -3,6 +3,7 @@
 # include <ctime>
 # include <iomanip>
 # include <iostream>
+# include <fstream>
 
 using namespace std;
 
@@ -961,8 +962,8 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
   cout << " n = "<<ni<<endl ;
   cout << " l = "<<l<<endl ;
 
-  ia = new double[l] ;
-  ja = new double[l] ;
+  ia = new int[l] ;
+  ja = new int[l] ;
   a = new double[l] ;
 
   rhs= new double[n];
@@ -976,8 +977,8 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
     /* code */
     matrixfile >> ia[i] >> ja[i] >> a[i] ;
 
-    xi = I[i] -1 ;
-    yi = J[i] -1 ;
+    xi = ia[i] -1 ;
+    yi = ja[i] -1 ;
 
     normalA[xi * m + yi] = a[i] ;
 
