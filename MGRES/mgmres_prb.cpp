@@ -966,6 +966,8 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
   ja = new int[l] ;
   a = new double[l] ;
 
+  normalA = new double[m*ni] ;
+
   rhs= new double[n];
   x_estimate = new double[n];
   x_exact  = new double[n];
