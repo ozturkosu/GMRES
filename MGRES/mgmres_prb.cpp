@@ -994,7 +994,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
   srand (time(NULL));
   seed = rand();
 
-  x_exact = r8vec_uniform_01_new ( n, seed );
+  x_exact = r8vec_uniform_01 ( n, seed );
 
 
   //lets calculate rhs
@@ -1028,13 +1028,13 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 //
     srand(time(NULL)) ;
 
-    for ( i = 0; i < n; i++ )
+    for (int i = 0; i < n; i++ )
     {
       x_estimate[i] = 0.0;
     }
 
     x_error = 0.0;
-    for ( i = 0; i < n; i++ )
+    for (int  i = 0; i < n; i++ )
     {
       x_error = x_error + pow ( x_exact[i] - x_estimate[i], 2 );
     }
