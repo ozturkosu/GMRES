@@ -57,8 +57,8 @@ int main (int argc, char** argv )
   cout << "  C++ version\n";
   
 
-  test01_ErrorInjected ( psize, fPos, range1,  range2,  k );
-
+  //test01_ErrorInjected ( psize, fPos, range1,  range2,  k );
+  test01_ErrorInjected_ReadingMatrix( psize, fPos, range1,  range2,  k );
 
   //
   //  Terminate.
@@ -907,7 +907,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 
 
   cout << "\n";
-  cout << "TEST01\n";
+  cout << "TEST01 reading matrix from file\n";
 
   //cout << "  Test MGMRES_ST on the simple -1,2-1 matrix.\n";
 //
@@ -1041,7 +1041,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
     x_error = sqrt ( x_error );
 
 
-    itr_max = 100;
+    itr_max = n;
     mr = 50;
 
    
