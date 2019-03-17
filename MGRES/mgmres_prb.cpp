@@ -1059,7 +1059,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
       tol_abs, tol_rel , psize ,  fPos , range1, range2 , kf);
 
     x_error = 0.0;
-    for ( i = 0; i < n; i++ )
+    for (int  i = 0; i < n; i++ )
     {
       x_error = x_error + pow ( x_exact[i] - x_estimate[i], 2 );
     }
