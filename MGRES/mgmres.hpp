@@ -28,5 +28,6 @@ void pmgmres_ilu_cr ( int n, int nz_num, int ia[], int ja[], double a[],
 double r8vec_dot ( int n, double a1[], double a2[] );
 double *r8vec_uniform_01 ( int n, int &seed );
 void rearrange_cr ( int n, int nz_num, int ia[], int ja[], double a[] );
+double *r8ge_mv ( int m, int n, double a[], double x[] );
 void timestamp ( );
 void injectBitFlipNotRandom( int n , double r[] , double s[] , double v[] , double h[] , double y[] , double x[] ,  int range1 , int range2 , int kf) ;

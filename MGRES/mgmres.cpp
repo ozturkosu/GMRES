@@ -1167,12 +1167,12 @@ void mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double
 
     for ( k = 1; k <= mr; k++ )
     {
-      k_copy = k;
+        k_copy = k;
 
        if( k == fPos)
        {
           cout << " Fault Injecting is occurred here" <<endl ;
-          injectBitFlipNotRandom(n , r, s , v, h, y,  x , range1 ,  range2 ,  kf) ;
+          injectBitFlipNotRandom(n , r, s , c, h, y,  x , range1 ,  range2 ,  kf) ;
 
        }
 
@@ -1937,6 +1937,29 @@ void rearrange_cr ( int n, int nz_num, int ia[], int ja[], double a[] )
   return;
 }
 //****************************************************************************80
+
+
+double *r8ge_mv ( int m, int n, double a[], double x[] )
+{
+  int i;
+  int j;
+  double *b;
+
+  b = new double[m];
+
+  for ( i = 0; i < m; i++ )
+  {
+    b[i] = 0.0;
+    for ( j = 0; j < n; j++ )
+    {
+      b[i] = b[i] + a[i+j*m] * x[j];
+    }
+  }
+
+  return b;
+}
+
+
 
 void timestamp ( )
 

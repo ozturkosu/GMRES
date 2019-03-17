@@ -870,7 +870,9 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 
   //double a[NZ_NUM];
   double *a ; // Val matrix for sparse format
-  int a;
+  //int a;
+  double *normalA ;
+
 
   //int ia[NZ_NUM];
   int *ia;
@@ -883,17 +885,25 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 
   int k;
   int mr;
-  int n = N;
+  //int n = N;
+  int n;
 
-  int nz_num = NZ_NUM;
+  //int nz_num = NZ_NUM;
+  int nz_num;
 
-  double rhs[N];
+  //double rhs[N];
+  double *rhs;
+
   int test;
   double tol_abs;
   double tol_rel;
   double x_error;
-  double x_estimate[N];
-  double x_exact[N];
+  //double x_estimate[N];
+  double *x_estimate ;
+
+  //double x_exact[N];
+  double *x_exact ;
+
 
   cout << "\n";
   cout << "TEST01\n";
@@ -944,6 +954,8 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
   while(matrixfile.peek()=='%') matrixfile.ignore(2048, '\n');
   matrixfile>>m>>ni>>l ;
 
+  nz_num = l ;
+  n = ni ;
 
   cout << " m = "<<m<<endl ;
   cout << " n = "<<ni<<endl ;
@@ -953,10 +965,21 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
   ja = new double[l] ;
   a = new double[l] ;
 
+  rhs= new double[n];
+  x_estimate = new double[n];
+  x_exact  = new double[n];
+
+  int xi , yi ;
+
   for (int i = 0; i < l; ++i)
   {
     /* code */
     matrixfile >> ia[i] >> ja[i] >> a[i] ;
+
+    xi = I[i] -1 ;
+    yi = J[i] -1 ;
+
+    normalA[xi * m + yi] = a[i] ;
 
   }
 
@@ -965,9 +988,19 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 
   cout << " Matrix A is filled from file"<<endl ;
 
+  int seed;
+
+  srand (time(NULL));
+  seed = rand();
+
+  x_exact = r8vec_uniform_01_new ( n, seed );
 
 
+  //lets calculate rhs
+  rhs = r8ge_mv ( m, ni, normalA , x_exact );
 
+
+  /*
 //
 //  Set the right hand side:
 //
@@ -975,7 +1008,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
   {
     rhs[i] = 0.0;
   }
-  rhs[N-1] = ( double ) ( n + 1 );
+  rhs[n-1] = ( double ) ( n + 1 );
 //
 //  Set the exact solution.
 //
@@ -983,6 +1016,9 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
   {
     x_exact[i] = ( double ) ( i + 1 );
   }
+
+  */
+
 
   for ( test = 1; test <= 1; test++ )
   {
@@ -1007,25 +1043,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
     itr_max = 100;
     mr = 50;
 
-    /*
-
-      if ( test == 1 )
-      {
-        itr_max = 100;
-        mr = 100;
-      }
-      else if ( test == 2 )
-      {
-        itr_max = 2;
-        mr = 50;
-      }
-      else if ( test == 3 )
-      {
-        itr_max = 5;
-        mr = 25;
-      }
-    */
-
+   
     tol_abs = 1.0E-08;
     tol_rel = 1.0E-08;
 
