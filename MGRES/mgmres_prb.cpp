@@ -1072,6 +1072,12 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
     x_error = sqrt ( x_error );
 
     cout << "  Final X_ERROR = " << x_error << "\n";
+
+    cout << " Successful Rate = " << successRate << " % " <<endl ; 
+    cout << " \n";
+
+
+
   }
   return;
 # undef N
