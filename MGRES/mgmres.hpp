@@ -18,7 +18,7 @@ void lus_cr ( int n, int nz_num, int ia[], int ja[], double l[], int ua[],
   double r[], double z[] );
 void mgmres_st ( int n, int nz_num, int ia[], int ja[], double a[], double x[],
   double rhs[], int itr_max, int mr, double tol_abs, double tol_rel );
-void mgmres_fault_st(int n, int nz_num, int ia[], int ja[], double a[], double x[],
+int mgmres_fault_st(int n, int nz_num, int ia[], int ja[], double a[], double x[],
 	double rhs[], int itr_max, int mr, double tol_abs, double tol_rel ,
 	int psize,  int fPos, int range1 , int range2, int kf ) ;
 void mult_givens ( double c, double s, int k, double g[] );
@@ -31,3 +31,4 @@ void rearrange_cr ( int n, int nz_num, int ia[], int ja[], double a[] );
 double *r8ge_mv ( int m, int n, double a[], double x[] );
 void timestamp ( );
 void injectBitFlipNotRandom( int n , double r[] , double s[] , double v[] , double h[] , double y[] , double x[] ,  int range1 , int range2 , int kf) ;
+

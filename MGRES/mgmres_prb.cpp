@@ -1022,8 +1022,10 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 
   */
 
+  int successRate =0 ;
+  int IsSuccess = 0;
 
-  for ( test = 1; test <= 1; test++ )
+  for ( test = 1; test <= 100; test++ )
   {
 //
 //  Set the initial solution estimate.
@@ -1057,8 +1059,10 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
     cout << "  Outer iteration limit = " << itr_max << "\n";
     cout << "  Initial X_ERROR = " << x_error << "\n";
 
-    mgmres_fault_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
+    IsSuccess = mgmres_fault_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
       tol_abs, tol_rel , psize ,  fPos , range1, range2 , kf);
+
+    successRate = successRate + IsSuccess ;
 
     x_error = 0.0;
     for (int  i = 0; i < n; i++ )
