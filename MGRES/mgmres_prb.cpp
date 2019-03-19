@@ -909,41 +909,12 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
   cout << "\n";
   cout << "TEST01 reading matrix from file\n";
 
-  //cout << "  Test MGMRES_ST on the simple -1,2-1 matrix.\n";
-//
-//  Set the matrix.
+ 
 //  Note that we use zero based index values in IA and JA.
 //
   k = 0;
 
-  /*
-  for ( i = 0; i < n; i++ )
-  {
-    if ( 0 < i )
-    {
-      ia[k] = i;
-      ja[k] = i-1;
-      a[k] = -1.0;
-      k = k + 1;
-    }
-
-    ia[k] = i;
-    ja[k] = i;
-    a[k] = 2.0;
-    k = k + 1;
-
-    if ( i < n-1 )
-    {
-      ia[k] = i;
-      ja[k] = i+1;
-      a[k] = -1.0;
-      k = k + 1;
-    }
-
-  }
-  */
-
-
+  
 
    //ifstream matrixfile("1138_bus.mtx");
   ifstream matrixfile("1138_bus.mtx");
@@ -1046,7 +1017,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 
 
     itr_max = n;
-    mr = 50;
+    mr = 100;
 
    
     tol_abs = 1.0E-08;
