@@ -1,9 +1,10 @@
 # include <cmath>
+# include <iostream>
 # include <cstdlib>
 # include <ctime>
 # include <fstream>
 # include <iomanip>
-# include <iostream>
+# include <iostream.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <time.h>
@@ -1124,6 +1125,8 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
         cout << " Bit error detected, terminating application" <<endl ;
         cout << "*******************************************" << endl;
 
+        cout << "  Previous Residual = " <<previous_Residual << "\n" ;
+        cout << "  Final residual = " << rho << "\n";
 
          delete [] c;
          delete [] g;
@@ -1984,33 +1987,6 @@ double *r8ge_mv ( int m, int n, double a[], double x[] )
 
 
 void timestamp ( )
-
-//****************************************************************************80
-//
-//  Purpose:
-//
-//    TIMESTAMP prints the current YMDHMS date as a time stamp.
-//
-//  Example:
-//
-//    31 May 2001 09:45:54 AM
-//
-//  Licensing:
-//
-//    This code is distributed under the GNU LGPL license. 
-//
-//  Modified:
-//
-//    24 September 2003
-//
-//  Author:
-//
-//    John Burkardt
-//
-//  Parameters:
-//
-//    None
-//
 {
 # define TIME_SIZE 40
 
@@ -2027,6 +2003,7 @@ void timestamp ( )
   cout << time_buffer << "\n";
 
   return;
+
 # undef TIME_SIZE
 }
 
@@ -2051,7 +2028,8 @@ void injectBitFlipNotRandom( int n , double r[] , double s[] , double v[] , doub
   // Emin Question = n  
   
   srand( time(NULL)) ;
-  int dim2 = rand() % n ;
+  int dim2 = 0;
+  dim2= rand() % n ;
 
   if(kf == 0)
     cout << " flipping in r "<<dim2<< endl ;
@@ -2063,24 +2041,24 @@ void injectBitFlipNotRandom( int n , double r[] , double s[] , double v[] , doub
   else if (kf==2)
   {
     /* code */
-    cout<< " flipping in v"<<dim2<<endl ;
+    cout<< " flipping in v "<<dim2<<endl ;
   }
   else if (kf==3)
   {
     /* code */
-    cout<< " flipping in h"<<dim2<<endl ;
+    cout<< " flipping in h "<<dim2<<endl ;
 
   }
   else if (kf==4)
   {
     /* code */
-    cout<< " flipping in y"<<dim2<<endl ;
+    cout<< " flipping in y "<<dim2<<endl ;
 
   }
   else if (kf==5)
   {
     /* code */
-    cout<< " flipping in x"<<dim2<<endl ;
+    cout<< " flipping in x "<<dim2<<endl ;
 
   }
 
