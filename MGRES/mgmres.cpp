@@ -1118,27 +1118,7 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
   for ( itr = 1; itr <= itr_max; itr++ )
   {
 
-    if(previous_Residual < rho)
-    {
-        cerr << " Bit error detected, terminating application" << endl;
-        cout << " Bit error detected, terminating application" <<endl ;
-        cout << "*******************************************" << endl;
-
-        cout << "  Previous Residual = " <<previous_Residual << "\n" ;
-        cout << "  Final residual = " << rho << "\n";
-
-         delete [] c;
-         delete [] g;
-         delete [] h;
-         delete [] r;
-         delete [] s;
-         delete [] v;
-         delete [] y;
-
-
-        return 1;
-
-    }
+  
 
     //This function is calculating A*x
     ax_st ( n, nz_num, ia, ja, a, x, r );
@@ -1152,6 +1132,12 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
     //This is estimating || r ||2 
 
     rho = sqrt ( r8vec_dot ( n, r, r ) );
+
+    if (itr == 1)
+    {
+      /* code */
+      previous_Residual = rho ;
+    }
 
     if ( verbose ) 
     {
@@ -1184,7 +1170,27 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
       }
     }
 
+    if(previous_Residual < rho)
+    {
+        cerr << " Bit error detected, terminating application" << endl;
+        cout << " Bit error detected, terminating application" <<endl ;
+        cout << "*******************************************" << endl;
 
+        cout << "  Previous Residual = " <<previous_Residual << "\n" ;
+        cout << "  Final residual = " << rho << "\n";
+
+         delete [] c;
+         delete [] g;
+         delete [] h;
+         delete [] r;
+         delete [] s;
+         delete [] v;
+         delete [] y;
+
+
+        return 1;
+
+    }
     //In this for loop Arnoldi Function and apply_given_rotaion is done ( Look Wikipedia)
 
     for ( k = 1; k <= mr; k++ )
