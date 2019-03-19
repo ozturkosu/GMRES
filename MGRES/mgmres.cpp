@@ -1200,6 +1200,28 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
         return 1;
 
     }
+    else if( isnan(rho))
+    {
+        cerr << " Bit error detected residual is nan, terminating application" << endl;
+        cout << " Bit error detected residual is nan, terminating application" <<endl ;
+        cout << "*******************************************" << endl;
+
+        cout << "  Previous Residual = " <<previous_Residual << "\n" ;
+        cout << "  Final residual = " << rho << "\n";
+
+         delete [] c;
+         delete [] g;
+         delete [] h;
+         delete [] r;
+         delete [] s;
+         delete [] v;
+         delete [] y;
+
+
+        return 1;
+
+    }
+
     //In this for loop Arnoldi Function and apply_given_rotaion is done ( Look Wikipedia)
 
     for ( k = 1; k <= mr; k++ )
@@ -1298,7 +1320,7 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
 
       if ( verbose )
       {
-        cout << "  K =   " << k << "  Residual = " << rho << "\n";
+        //cout << "  K =   " << k << "  Residual = " << rho << "\n";
       }
 
       if ( rho <= rho_tol && rho <= tol_abs )
