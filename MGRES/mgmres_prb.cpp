@@ -23,7 +23,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 int main (int argc, char** argv )
 {
 
-   srand(time(NULL)) ;
+//srand(time(NULL)) ;
 
    if (argc != 6) 
    {
@@ -67,7 +67,7 @@ int main (int argc, char** argv )
     cout << "MGMRES_PRB:\n";
     cout << "  Normal end of execution.\n";
     cout << "\n";
-    timestamp ( );
+  timestamp ( );
 
     return 0;
 }
@@ -1030,7 +1030,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 //
 //  Set the initial solution estimate.
 //
-    srand(time(NULL)) ;
+    //srand(time(NULL)) ;
 
     for (int i = 0; i < n; i++ )
     {
