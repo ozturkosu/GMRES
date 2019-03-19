@@ -1170,7 +1170,7 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
       }
     }
 
-    if(abs(previous_Residual -rho ) > 1)
+    if( rho - previous_Residual  > 1)
     {
         cerr << " Bit error detected, terminating application" << endl;
         cout << " Bit error detected, terminating application" <<endl ;
