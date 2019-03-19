@@ -1134,9 +1134,6 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
          delete [] y;
 
 
-
-
-
         return 1;
 
     }
@@ -1272,6 +1269,8 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
                             - s[k-1] * h[ k   +(k-1)*(mr+1)];
       h[k+(k-1)*(mr+1)] = 0;
       mult_givens ( c[k-1], s[k-1], k-1, g );
+
+      previous_Residual = rho ;
 
       rho = fabs ( g[k] );
 
