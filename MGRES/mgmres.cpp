@@ -4,7 +4,6 @@
 # include <ctime>
 # include <fstream>
 # include <iomanip>
-# include <iostream.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <time.h>
