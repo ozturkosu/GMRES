@@ -752,6 +752,9 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
 //
   k = 0;
 
+  int successRate =0 ;
+  int IsSuccess = 0;
+
   for ( i = 0; i < n; i++ )
   {
     if ( 0 < i )
