@@ -925,7 +925,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 //
   k = 0;
 
-  char nameOfMatrix[matrixname.size() +1] 
+  char nameOfMatrix[matrixname.size() +1]  ;
   strcopy(nameOfMatrix, matrixname.c_str()) ;
 
    //ifstream matrixfile("1138_bus.mtx");
