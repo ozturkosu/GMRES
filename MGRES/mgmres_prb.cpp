@@ -930,7 +930,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
    //ifstream matrixfile("1138_bus.mtx");
 
   //ifstream matrixfile("1138_bus.mtx");
-  ifstream matrixfile(stringname);
+  ifstream matrixfile(matrixname);
   if(!(matrixfile.is_open())){
       cout << "Error : file not found " <<endl;
       return;
