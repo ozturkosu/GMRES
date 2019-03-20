@@ -4,7 +4,7 @@
 # include <iomanip>
 # include <iostream>
 # include <fstream>
-# include<string>
+# include <string>
 
 using namespace std;
 
@@ -16,7 +16,7 @@ void test02 ( );
 void test03 ( );
 void test04 ( );
 void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int k );
-void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf , string nameMatrix ) ;
+void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf , string namematrix ) ;
 
 
 //****************************************************************************80
