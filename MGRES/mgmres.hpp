@@ -31,4 +31,3 @@ void rearrange_cr ( int n, int nz_num, int ia[], int ja[], double a[] );
 double *r8ge_mv ( int m, int n, double a[], double x[] );
 void timestamp ( );
 void injectBitFlipNotRandom( int n , double r[] , double s[] , double v[] , double h[] , double y[] , double x[] ,  int range1 , int range2 , int kf) ;
-
