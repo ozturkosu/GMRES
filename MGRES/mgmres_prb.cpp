@@ -57,8 +57,8 @@ int main (int argc, char** argv )
   cout << "  C++ version\n";
   
 
-  //test01_ErrorInjected ( psize, fPos, range1,  range2,  k );
-  test01_ErrorInjected_ReadingMatrix( psize, fPos, range1,  range2,  k );
+  test01_ErrorInjected ( psize, fPos, range1,  range2,  k );
+  //test01_ErrorInjected_ReadingMatrix( psize, fPos, range1,  range2,  k );
 
   //
   //  Terminate.
@@ -795,7 +795,7 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
     x_exact[i] = ( double ) ( i + 1 );
   }
 
-  for ( test = 1; test <= 1; test++ )
+  for ( test = 1; test <= 100; test++ )
   {
 //
 //  Set the initial solution estimate.
@@ -847,8 +847,12 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
     cout << "  Outer iteration limit = " << itr_max << "\n";
     cout << "  Initial X_ERROR = " << x_error << "\n";
 
-    mgmres_fault_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
+     IsSuccess =  mgmres_fault_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
       tol_abs, tol_rel , psize ,  fPos , range1, range2 , kf);
+
+
+    successRate = successRate + IsSuccess ;
+
 
     x_error = 0.0;
     for ( i = 0; i < n; i++ )
@@ -858,6 +862,9 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
     x_error = sqrt ( x_error );
 
     cout << "  Final X_ERROR = " << x_error << "\n";
+
+    cout << " Successful Rate = " << successRate << " % " <<endl ; 
+    cout << " \n";
   }
   return;
 # undef N
