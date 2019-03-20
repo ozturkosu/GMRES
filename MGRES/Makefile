@@ -12,7 +12,7 @@ mgmres_prb.o: mgmres_prb.cpp
 	#mpic++ -c -I/$(LIBPATH) main.cpp
 	#mv main.o $(LIBPATH)/main.o
 
-main2: mgmres.o mgmres_prb.o
+main: mgmres.o mgmres_prb.o
 	#g++ main.o $(LIBPATH)/cg_lib.o -lm -o main
 	g++ mgmres.o mgmres_prb.o -lm -o main
 	#mpic++ main.o cg_lib.o -lm -o main
