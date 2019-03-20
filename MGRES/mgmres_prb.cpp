@@ -875,7 +875,7 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
 
 
 
-void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf , string matrixname)
+void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf , std::string matrixname)
 {
 
 # define N 100
@@ -927,7 +927,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
   k = 0;
 
   char nameOfMatrix[matrixname.size() +1]  ;
-  strcopy(nameOfMatrix, matrixname.c_str()) ;
+  strcpy(nameOfMatrix, matrixname.c_str()) ;
 
    //ifstream matrixfile("1138_bus.mtx");
 
