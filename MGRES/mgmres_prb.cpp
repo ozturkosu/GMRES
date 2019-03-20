@@ -16,7 +16,7 @@ void test02 ( );
 void test03 ( );
 void test04 ( );
 void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int k );
-void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf , string namematrix ) ;
+void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf , std::string namematrix ) ;
 
 
 //****************************************************************************80
