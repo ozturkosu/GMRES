@@ -39,7 +39,7 @@ int main (int argc, char** argv )
   int range1=atoi(argv[3]);   //   Bit flip range start
   int range2=atoi(argv[4]) ;  // Bit flip range finish
   int k=atoi(argv[5]) ;  // K for injecting type
-  std::string matixname= argv[6] ; // Matrix Name
+  std::string matrixname= argv[6] ; // Matrix Name
 
   timestamp ( );
   cout << "\n";
