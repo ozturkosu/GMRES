@@ -27,7 +27,7 @@ int main (int argc, char** argv )
 
 //srand(time(NULL)) ;
 
-   if (argc != 6) 
+   if (argc != 7) 
    {
       cout << "usage: ./main  [problemSize] [flipPosition] [range1] [range2] [Bit Injecting Type] [Matrix Name]" << endl;
       return 0;
