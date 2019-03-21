@@ -1091,6 +1091,10 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
   double *s;
   double *v;
 
+  double snorm;
+  double vnorm;
+  double ynorm;
+
   bool verbose = true;
   double *y;
 
@@ -1141,6 +1145,13 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
     //This is estimating || r ||2 
 
     rho = sqrt ( r8vec_dot ( n, r, r ) );
+
+    if( itr != 1)
+    {
+        snorm = sqrt ( r8vec_dot( n, s ,s )) ;
+        cout << " ITR = " << itr << " Snorm = " <<snorm << "\n" ;
+
+    }
 
     if (itr == 1)
     {
