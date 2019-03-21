@@ -1091,6 +1091,7 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
   double *s;
   double *v;
 
+  //Emin Code 
   double snorm;
   double vnorm;
   double ynorm;
@@ -1149,7 +1150,9 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
     if( itr != 1)
     {
         snorm = sqrt ( r8vec_dot( n, s ,s )) ;
+        vnorm = sqrt ( r8vec_dot( n, v , v)) ;
         cout << " ITR = " << itr << " Snorm = " <<snorm << "\n" ;
+        cout << " ITR = " << itr << " Vnorm = " <<vnorm << "\n" ;
 
     }
 
