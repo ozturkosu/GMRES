@@ -818,7 +818,7 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
 
 
     itr_max = 1000;
-    mr = 100;
+    mr = 500;
 
     /*
 
