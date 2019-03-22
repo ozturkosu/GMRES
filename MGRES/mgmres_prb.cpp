@@ -69,7 +69,7 @@ int main (int argc, char** argv )
     cout << "MGMRES_PRB:\n";
     cout << "  Normal end of execution.\n";
     cout << "\n";
-  timestamp ( );
+    timestamp ( );
 
     return 0;
 }
