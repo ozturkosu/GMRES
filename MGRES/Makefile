@@ -1,6 +1,6 @@
 LIBPATH=$(HOME)/codes/CG
 
-all: main
+all: main3
 
 mgmres.o: mgmres.cpp mgmres.hpp
 	g++ -c -I/$(LIBPATH) mgmres.cpp
@@ -12,11 +12,11 @@ mgmres_prb.o: mgmres_prb.cpp
 	#mpic++ -c -I/$(LIBPATH) main.cpp
 	#mv main.o $(LIBPATH)/main.o
 
-main: mgmres.o mgmres_prb.o
+main3: mgmres.o mgmres_prb.o
 	#g++ main.o $(LIBPATH)/cg_lib.o -lm -o main
-	g++ mgmres.o mgmres_prb.o -lm -o main
+	g++ mgmres.o mgmres_prb.o -lm -o main3
 	#mpic++ main.o cg_lib.o -lm -o main
 
 clean:
 	rm *.o
-	rm main
+	rm main3

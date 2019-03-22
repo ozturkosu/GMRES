@@ -59,8 +59,8 @@ int main (int argc, char** argv )
   cout << "  C++ version\n";
   
 
-  //test01_ErrorInjected ( psize, fPos, range1,  range2,  k );
-  test01_ErrorInjected_ReadingMatrix( psize, fPos, range1,  range2,  k , matrixname);
+  test01_ErrorInjected ( psize, fPos, range1,  range2,  k );
+  //test01_ErrorInjected_ReadingMatrix( psize, fPos, range1,  range2,  k , matrixname);
 
   //
   //  Terminate.
@@ -724,7 +724,7 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
 //    John Burkardt
 //
 {
-# define N 100
+# define N 1000
 # define NZ_NUM 3 * N - 2
 
   double a[NZ_NUM];
@@ -817,8 +817,8 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
     x_error = sqrt ( x_error );
 
 
-    itr_max = 100;
-    mr = 50;
+    itr_max = 1000;
+    mr = 100;
 
     /*
 
