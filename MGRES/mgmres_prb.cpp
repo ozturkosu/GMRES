@@ -59,8 +59,8 @@ int main (int argc, char** argv )
   cout << "  C++ version\n";
   
 
-  test01_ErrorInjected ( psize, fPos, range1,  range2,  k );
-  //test01_ErrorInjected_ReadingMatrix( psize, fPos, range1,  range2,  k , matrixname);
+  //test01_ErrorInjected ( psize, fPos, range1,  range2,  k );
+  test01_ErrorInjected_ReadingMatrix( psize, fPos, range1,  range2,  k , matrixname);
 
   //
   //  Terminate.
