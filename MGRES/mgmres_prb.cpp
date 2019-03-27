@@ -1032,7 +1032,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 
 
     itr_max = n;
-    mr = 100;
+    mr = 500;
 
    
     tol_abs = 1.0E-08;
