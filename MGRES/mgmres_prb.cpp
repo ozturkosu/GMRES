@@ -16,7 +16,7 @@ void test01 ( );
 void test02 ( );
 void test03 ( );
 void test04 ( );
-void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int k );
+void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int k , int innerLoop );
 void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf , int innerLoop, std::string namematrix ) ;
 
 
@@ -696,7 +696,7 @@ void test04 ( )
 # undef NZ_NUM
 }
 
-void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf )
+void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf , int innerLoop )
 
 //****************************************************************************80
 //
@@ -851,7 +851,7 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
     cout << "  Initial X_ERROR = " << x_error << "\n";
 
      IsSuccess =  mgmres_fault_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
-      tol_abs, tol_rel , psize ,  fPos , range1, range2 , kf);
+      tol_abs, tol_rel , psize ,  fPos , range1, range2 , kf , innerLoop);
 
 
     successRate = successRate + IsSuccess ;
