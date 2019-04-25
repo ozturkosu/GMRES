@@ -17,7 +17,7 @@ void test02 ( );
 void test03 ( );
 void test04 ( );
 void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int k );
-void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf , std::string namematrix ) ;
+void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf , int innerLoop, std::string namematrix ) ;
 
 
 //****************************************************************************80
@@ -27,7 +27,7 @@ int main (int argc, char** argv )
 
 //srand(time(NULL)) ;
 
-   if (argc != 7) 
+   if (argc != 8) 
    {
       cout << "usage: ./main  [problemSize] [flipPosition] [range1] [range2] [Bit Injecting Type] [Matrix Name]" << endl;
       return 0;
@@ -40,7 +40,8 @@ int main (int argc, char** argv )
   int range1=atoi(argv[3]);   //   Bit flip range start
   int range2=atoi(argv[4]) ;  // Bit flip range finish
   int k=atoi(argv[5]) ;  // K for injecting type
-  std::string matrixname= argv[6] ; // Matrix Name
+  int innerLoop=atoi(argv[6]) ;
+  std::string matrixname= argv[7] ; // Matrix Name
 
   timestamp ( );
   cout << "\n";
@@ -60,7 +61,7 @@ int main (int argc, char** argv )
   
 
   //test01_ErrorInjected ( psize, fPos, range1,  range2,  k );
-  test01_ErrorInjected_ReadingMatrix( psize, fPos, range1,  range2,  k , matrixname);
+  test01_ErrorInjected_ReadingMatrix( psize, fPos, range1,  range2,  k , innerLoop, matrixname);
 
   //
   //  Terminate.
@@ -875,7 +876,7 @@ void test01_ErrorInjected (int psize,  int fPos, int range1, int range2, int kf 
 
 
 
-void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf , std::string matrixname)
+void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int range2, int kf , int innerLoop, std::string matrixname)
 {
 
 # define N 100
