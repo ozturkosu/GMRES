@@ -20,7 +20,7 @@ void mgmres_st ( int n, int nz_num, int ia[], int ja[], double a[], double x[],
   double rhs[], int itr_max, int mr, double tol_abs, double tol_rel );
 int mgmres_fault_st(int n, int nz_num, int ia[], int ja[], double a[], double x[],
 	double rhs[], int itr_max, int mr, double tol_abs, double tol_rel ,
-	int psize,  int fPos, int range1 , int range2, int kf ) ;
+	int psize,  int fPos, int range1 , int range2, int kf , int mgmres_fault_st) ;
 void mult_givens ( double c, double s, int k, double g[] );
 void pmgmres_ilu_cr ( int n, int nz_num, int ia[], int ja[], double a[], 
   double x[], double rhs[], int itr_max, int mr, double tol_abs, 
