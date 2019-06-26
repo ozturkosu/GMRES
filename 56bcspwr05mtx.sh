@@ -23,7 +23,7 @@ mkdir intoY56to59rangeNis400
 mkdir intoY56to59rangeNis600
 ./main6 5 300 56 59 4 400 bcspwr05.mtx>> intoY56to59rangeNis600/56_result_bcspwr05.txt
 mkdir intoY56to59rangeNis800
-./main6 5 400 56 59 4 400 bcspwr05.mtx>> intoY56to59rangeNis800/56_result_bcspwr05.txt
+./main6 5 400 56 59 4 400 bcspwr05.mtx>> intoY56to59rangeNis800/56_result_bcspwr05.txt5
 mkdir intoH56to59rangeNis200
 ./main6 5 100 56 59 3 400 bcspwr05.mtx >> intoH56to59rangeNis200/56_result_bcspwr05.txt
 mkdir intoH56to59rangeNis400
