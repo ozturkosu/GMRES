@@ -1013,7 +1013,7 @@ void mgmres_st ( int n, int nz_num, int ia[], int ja[], double a[], double x[],
 
 int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double x[],
   double rhs[], int itr_max, int mr, double tol_abs, double tol_rel , int psize,
-   int fPos, int range1 , int range2, int kf , int innerLoop, double &relativeError)
+   int fPos, int range1 , int range2, int kf , int innerLoop)
 
 //****************************************************************************80
 //
