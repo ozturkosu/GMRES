@@ -60,6 +60,10 @@ int main (int argc, char** argv )
   cout << "  C++ version\n";
   
 
+  double sum=0;
+  double averageRelativeError=0;
+
+
   //test01_ErrorInjected ( psize, fPos, range1,  range2,  k );
   test01_ErrorInjected_ReadingMatrix( psize, fPos, range1,  range2,  k , innerLoop, matrixname);
 
@@ -1012,6 +1016,15 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
   int successRate =0 ;
   int IsSuccess = 0;
 
+  double sum=0;
+  double averageRelativeError=0;
+
+  double relativeError=0;
+
+  double x_real=0;
+
+  int nonSuccess=0;
+
   for ( test = 1; test <= 100; test++ )
   {
 //
@@ -1047,7 +1060,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
     cout << "  Initial X_ERROR = " << x_error << "\n";
 
     IsSuccess = mgmres_fault_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
-      tol_abs, tol_rel , psize ,  fPos , range1, range2 , kf ,innerLoop);
+      tol_abs, tol_rel , psize ,  fPos , range1, range2 , kf ,innerLoop , relativeError);
 
     successRate = successRate + IsSuccess ;
 
@@ -1055,8 +1068,19 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
     for (int  i = 0; i < n; i++ )
     {
       x_error = x_error + pow ( x_exact[i] - x_estimate[i], 2 );
+      x_real = x_real + pow( x_exact[i] , 2) ;
     }
     x_error = sqrt ( x_error );
+
+    x_real = sqrt ( x_real ) ;
+
+    relativeError = log10(x_error/ x_real) ;
+
+    if(!IsSuccess)
+    {
+        averageRelativeError = averageRelativeError + relativeError ;
+        nonSuccess++;
+    }
 
     cout << "  Final X_ERROR = " << x_error << "\n";
 
@@ -1066,6 +1090,11 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 
 
   }
+
+  averageRelativeError = averageRelativeError/nonSuccess ; 
+
+  cout << "  Average Relative Error  = " << averageRelativeError << "\n";
+
   return;
 # undef N
 # undef NZ_NUM
