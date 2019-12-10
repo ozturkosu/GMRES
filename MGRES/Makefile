@@ -12,7 +12,7 @@ mgmres_prb.o: mgmres_prb.cpp
 	#mpic++ -c -I/$(LIBPATH) main.cpp
 	#mv main.o $(LIBPATH)/main.o
 
-main6: mgmres.o mgmres_prb.o
+mainRelativeError: mgmres.o mgmres_prb.o
 	#g++ main.o $(LIBPATH)/cg_lib.o -lm -o main
 	g++ mgmres.o mgmres_prb.o -lm -o mainRelativeError
 	#mpic++ main.o cg_lib.o -lm -o main
