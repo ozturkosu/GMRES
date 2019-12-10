@@ -1060,7 +1060,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
     cout << "  Initial X_ERROR = " << x_error << "\n";
 
     IsSuccess = mgmres_fault_st ( n, nz_num, ia, ja, a, x_estimate, rhs, itr_max, mr, 
-      tol_abs, tol_rel , psize ,  fPos , range1, range2 , kf ,innerLoop , relativeError);
+      tol_abs, tol_rel , psize ,  fPos , range1, range2 , kf ,innerLoop );
 
     successRate = successRate + IsSuccess ;
 
