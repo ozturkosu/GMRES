@@ -29,7 +29,7 @@ int main (int argc, char** argv )
 
    if (argc != 8) 
    {
-      cout << "usage: ./main  [problemSize] [flipPosition] [range1] [range2] [Bit Injecting Type] [Matrix Name]" << endl;
+      cout << "usage: ./main  [problemSize] [flipPosition] [range1] [range2] [Bit Injecting Type] [innerLoop][Matrix Name]" << endl;
       return 0;
    }
 
@@ -1088,6 +1088,9 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
     cout << " \n";
 
 
+    averageRelativeError = averageRelativeError/nonSuccess ; 
+
+    cout << "  Average Relative Error  = " << averageRelativeError << "\n";
 
   }
 
