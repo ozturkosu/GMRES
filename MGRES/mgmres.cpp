@@ -1188,7 +1188,7 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
       }
     }
 
-    /*
+    
 
     if( rho - previous_Residual  > 1)
     {
@@ -1208,7 +1208,7 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
          delete [] y;
 
 
-        return 1;
+        // return 1;
 
     }
     else if( isnan(rho))
@@ -1229,11 +1229,11 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
          delete [] y;
 
 
-        return 1;
+        // return 1;
 
     }
 
-    */
+    
 
     //In this for loop Arnoldi Function and apply_given_rotaion is done ( Look Wikipedia)
 
