@@ -1188,6 +1188,8 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
       }
     }
 
+    /*
+
     if( rho - previous_Residual  > 1)
     {
         cerr << " Bit error detected, terminating application" << endl;
@@ -1231,6 +1233,8 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
 
     }
 
+    */
+
     //In this for loop Arnoldi Function and apply_given_rotaion is done ( Look Wikipedia)
 
     for ( k = 1; k <= mr; k++ )
@@ -1245,7 +1249,7 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
 
        }
 
-      
+       /********Arnoldi******////       
 
       // q = A * Q(: ,1)  
       ax_st ( n, nz_num, ia, ja, a, v+(k-1)*n, v+k*n );
@@ -1294,6 +1298,8 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
           v[i+k*n] = v[i+k*n] / h[k+(k-1)*(mr+1)];
         }
       }
+       /********Arnoldi******////  
+      
 
       // This part is apply given rotation Look at mult_givens
 

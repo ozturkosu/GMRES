@@ -1,6 +1,6 @@
 LIBPATH=$(HOME)/codes/CG
 
-all: mainRelativeError
+all: mainRelativeErrorWithoutDetection
 
 mgmres.o: mgmres.cpp mgmres.hpp
 	g++ -c -I/$(LIBPATH) mgmres.cpp
@@ -12,11 +12,11 @@ mgmres_prb.o: mgmres_prb.cpp
 	#mpic++ -c -I/$(LIBPATH) main.cpp
 	#mv main.o $(LIBPATH)/main.o
 
-mainRelativeError: mgmres.o mgmres_prb.o
+mainRelativeErrorWithoutDetection: mgmres.o mgmres_prb.o
 	#g++ main.o $(LIBPATH)/cg_lib.o -lm -o main
 	g++ mgmres.o mgmres_prb.o  -o mainRelativeError
 	#mpic++ main.o cg_lib.o -lm -o main
 
 clean:
 	rm *.o
-	rm mainRelativeError
+	rm mainRelativeErrorWithoutDetection
