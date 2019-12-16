@@ -1199,6 +1199,7 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
         cout << "  Previous Residual = " <<previous_Residual << "\n" ;
         cout << "  Final residual = " << rho << "\n";
 
+         /*
          delete [] c;
          delete [] g;
          delete [] h;
@@ -1209,6 +1210,8 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
 
 
         // return 1;
+
+        */
 
     }
     else if( isnan(rho))
@@ -1220,6 +1223,8 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
         cout << "  Previous Residual = " <<previous_Residual << "\n" ;
         cout << "  Final residual = " << rho << "\n";
 
+        /*
+
          delete [] c;
          delete [] g;
          delete [] h;
@@ -1230,6 +1235,8 @@ int mgmres_fault_st ( int n, int nz_num, int ia[], int ja[], double a[], double 
 
 
         // return 1;
+
+        */
 
     }
 
