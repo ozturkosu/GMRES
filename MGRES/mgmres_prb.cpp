@@ -1025,7 +1025,7 @@ void test01_ErrorInjected_ReadingMatrix (int psize,  int fPos, int range1, int r
 
   int nonSuccess=0;
 
-  for ( test = 1; test <= 100; test++ )
+  for ( test = 1; test <= 1; test++ )
   {
 //
 //  Set the initial solution estimate.
